@@ -1,19 +1,19 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	6.3
+%define		kdeframever	6.4
 %define		qtver		5.15.2
 %define		kfname		kimageformats
 
 Summary:	Image format plugins for Qt
 Summary(pl.UTF-8):	Wtyczki formatów obrazów dla Qt
 Name:		kf6-%{kfname}
-Version:	6.3.0
+Version:	6.4.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	02159412c50933fc902584192787e168
+# Source0-md5:	e0061fa1b06a2ae63d3b7a4c11d4713b
 URL:		https://kde.org/
 BuildRequires:	OpenEXR-devel
 BuildRequires:	Qt6Core-devel >= %{qtver}
@@ -63,8 +63,8 @@ The following image formats have read and write support:
 %description -l pl.UTF-8
 Ten szkielet zapewnia dodatkowe wtyczki formatów obrazów dla QtGui.
 Jako takie niest jest wymagany do budowania innego oprogramowania, ale
-może być zależnością wymaganą do obsługi pewnych formatów
-przez programy oparte na Qt.
+może być zależnością wymaganą do obsługi pewnych formatów przez
+programy oparte na Qt.
 
 Następujące formaty obrazów mają obsługę wyłącznie odczytu:
 - DirectDraw Surface (dds)
@@ -124,3 +124,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_tga.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_xcf.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_qoi.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pfm.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pxr.so
