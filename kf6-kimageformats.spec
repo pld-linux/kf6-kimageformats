@@ -1,19 +1,19 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	6.10
+%define		kdeframever	6.11
 %define		qtver		5.15.2
 %define		kfname		kimageformats
 
 Summary:	Image format plugins for Qt
 Summary(pl.UTF-8):	Wtyczki formatów obrazów dla Qt
 Name:		kf6-%{kfname}
-Version:	6.10.0
-Release:	2
+Version:	6.11.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	0d2fb6482d7feccf18793b004325043b
+# Source0-md5:	4f035f9b0466e297bd95ee57eb53f820
 URL:		https://kde.org/
 BuildRequires:	OpenEXR-devel
 BuildRequires:	Qt6Core-devel >= %{qtver}
@@ -128,3 +128,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pxr.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_sct.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_dds.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_jp2.so
