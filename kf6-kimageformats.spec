@@ -1,8 +1,12 @@
+# TODO libjxr
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
+%bcond_without	heif		# HEIF image plugin
+
 %define		kdeframever	6.11
-%define		qtver		5.15.2
+%define		kf_ver		6.11.0
+%define		qt_ver		6.6.0
 %define		kfname		kimageformats
 
 Summary:	Image format plugins for Qt
@@ -15,25 +19,36 @@ Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
 # Source0-md5:	4f035f9b0466e297bd95ee57eb53f820
 URL:		https://kde.org/
-BuildRequires:	OpenEXR-devel
-BuildRequires:	Qt6Core-devel >= %{qtver}
-BuildRequires:	Qt6DBus-devel >= %{qtver}
-BuildRequires:	Qt6Gui-devel >= %{qtver}
-BuildRequires:	Qt6PrintSupport-devel >= %{qtver}
-BuildRequires:	Qt6Test-devel >= %{qtver}
-BuildRequires:	Qt6Widgets-devel >= %{qtver}
+BuildRequires:	OpenEXR-devel >= 3.0
+BuildRequires:	Qt6Core-devel >= %{qt_ver}
+BuildRequires:	Qt6Gui-devel >= %{qt_ver}
+BuildRequires:	Qt6PrintSupport-devel >= %{qt_ver}
+%{?with_tests:BuildRequires:	Qt6Test-devel >= %{qt_ver}}
 BuildRequires:	cmake >= 3.16
-BuildRequires:	kf6-extra-cmake-modules >= %{version}
+BuildRequires:	kf6-extra-cmake-modules >= %{kf_ver}
+BuildRequires:	kf6-karchive-devel >= %{kf_ver}
 BuildRequires:	libavif-devel >= 0.8.2
+%{?with_heif:BuildRequires:	libheif-devel >= 1.10.0}
 BuildRequires:	libjpeg-devel
-BuildRequires:	libjxl-devel
+BuildRequires:	libjxl-devel >= 0.9.4
+BuildRequires:	libraw-devel >= 0.20.2
 BuildRequires:	ninja
-BuildRequires:	qt6-linguist >= %{qtver}
-BuildRequires:	rpmbuild(macros) >= 1.164
+BuildRequires:	openjpeg2-devel >= 2.0
+BuildRequires:	pkgconfig
+BuildRequires:	qt6-linguist >= %{qt_ver}
+BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+Requires:	Qt6Core >= %{qt_ver}
+Requires:	Qt6Gui >= %{qt_ver}
+Requires:	Qt6PrintSupport >= %{qt_ver}
 Requires:	kf6-dirs
-#Obsoletes:	kf5-%{kfname} < %{version}
+Requires:	kf6-karchive >= %{kf_ver}
+Requires:	libavif >= 0.8.2
+%{?with_heif:Requires:	libheif >= 1.10.0}
+Requires:	libjxl >= 0.9.4
+Requires:	libraw >= 0.20.2
+#Obsoletes:	kf5-kimageformats < 6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		qt6dir		%{_libdir}/qt6
@@ -89,7 +104,8 @@ Następujące formaty obrazów mają obsługę odczytu i zapisu:
 %cmake -B build \
 	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+	%{?with_heif:-DKIMAGEFORMATS_HEIF=ON}
 
 %ninja_build -C build
 
@@ -99,6 +115,7 @@ Następujące formaty obrazów mają obsługę odczytu i zapisu:
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %ninja_install -C build
 
 %clean
@@ -110,6 +127,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_ani.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_avif.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_hdr.so
+%if %{with heif}
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_heif.so
+%endif
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_eps.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_exr.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_jxl.so
