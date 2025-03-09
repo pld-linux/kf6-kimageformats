@@ -1,8 +1,8 @@
-# TODO libjxr
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
 %bcond_without	heif		# HEIF image plugin
+%bcond_without	jxr		# JXR image plugin
 
 %define		kdeframever	6.11
 %define		kf_ver		6.11.0
@@ -13,7 +13,7 @@ Summary:	Image format plugins for Qt
 Summary(pl.UTF-8):	Wtyczki formatów obrazów dla Qt
 Name:		kf6-%{kfname}
 Version:	6.11.0
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
@@ -25,6 +25,7 @@ BuildRequires:	Qt6Gui-devel >= %{qt_ver}
 BuildRequires:	Qt6PrintSupport-devel >= %{qt_ver}
 %{?with_tests:BuildRequires:	Qt6Test-devel >= %{qt_ver}}
 BuildRequires:	cmake >= 3.16
+%{?with_jxr:BuildRequires:	jxrlib-devel}
 BuildRequires:	kf6-extra-cmake-modules >= %{kf_ver}
 BuildRequires:	kf6-karchive-devel >= %{kf_ver}
 BuildRequires:	libavif-devel >= 0.8.2
@@ -105,7 +106,8 @@ Następujące formaty obrazów mają obsługę odczytu i zapisu:
 	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-	%{?with_heif:-DKIMAGEFORMATS_HEIF=ON}
+	%{?with_heif:-DKIMAGEFORMATS_HEIF=ON} \
+	%{?with_jxr:-DKIMAGEFORMATS_JXR=ON}
 
 %ninja_build -C build
 
@@ -126,26 +128,29 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_ani.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_avif.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_dds.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_eps.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_exr.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_hdr.so
 %if %{with heif}
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_heif.so
 %endif
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_eps.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_exr.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_jp2.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_jxl.so
+%if %{with jxr}
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_jxr.so
+%endif
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_kra.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_ora.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pcx.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pfm.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pic.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_psd.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pxr.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_qoi.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_ras.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_raw.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_rgb.so
+%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_sct.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_tga.so
 %attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_xcf.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_qoi.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pfm.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pxr.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_sct.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_dds.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_jp2.so
