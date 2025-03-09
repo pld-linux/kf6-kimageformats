@@ -13,11 +13,12 @@ Summary:	Image format plugins for Qt
 Summary(pl.UTF-8):	Wtyczki formatów obrazów dla Qt
 Name:		kf6-%{kfname}
 Version:	6.11.0
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
 # Source0-md5:	4f035f9b0466e297bd95ee57eb53f820
+Patch0:		kimageformats-jxr.patch
 URL:		https://kde.org/
 BuildRequires:	OpenEXR-devel >= 3.0
 BuildRequires:	Qt6Core-devel >= %{qt_ver}
@@ -100,6 +101,7 @@ Następujące formaty obrazów mają obsługę odczytu i zapisu:
 
 %prep
 %setup -q -n %{kfname}-%{version}
+%patch -P0 -p1
 
 %build
 %cmake -B build \

@@ -1,0 +1,11 @@
+--- kimageformats-6.11.0/src/imageformats/jxr.cpp.orig	2025-02-07 15:01:34.000000000 +0100
++++ kimageformats-6.11.0/src/imageformats/jxr.cpp	2025-03-09 12:07:48.137425052 +0100
+@@ -859,7 +859,7 @@ bool JXRHandler::read(QImage *outImage)
+                 return false;
+             }
+             for (qint32 y = 0, h = img.height(); y < h; ++y) {
+-                std::memcpy(img.scanLine(y), ba.data() + convStrideSize * y, (std::min)(convStrideSize, img.bytesPerLine()));
++                std::memcpy(img.scanLine(y), ba.data() + convStrideSize * y, (std::min<qint64>)(convStrideSize, img.bytesPerLine()));
+             }
+         }
+         PKFormatConverter_Release(&pConverter);
