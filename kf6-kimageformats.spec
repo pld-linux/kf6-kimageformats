@@ -4,7 +4,7 @@
 %bcond_without	heif		# HEIF image plugin
 %bcond_without	jxr		# JXR image plugin
 
-%define		kdeframever	6.11
+%define		kdeframever	6.12
 %define		kf_ver		6.11.0
 %define		qt_ver		6.6.0
 %define		kfname		kimageformats
@@ -12,12 +12,12 @@
 Summary:	Image format plugins for Qt
 Summary(pl.UTF-8):	Wtyczki formatów obrazów dla Qt
 Name:		kf6-%{kfname}
-Version:	6.11.0
-Release:	4
+Version:	6.12.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	4f035f9b0466e297bd95ee57eb53f820
+# Source0-md5:	f9bab1be4c3e59ef94b4a96f6b093077
 Patch0:		kimageformats-jxr.patch
 URL:		https://kde.org/
 BuildRequires:	OpenEXR-devel >= 3.0
