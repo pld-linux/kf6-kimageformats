@@ -141,35 +141,35 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.md
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_ani.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_avif.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_dds.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_eps.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_exr.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_hdr.so
+%{qt6dir}/plugins/imageformats/kimg_ani.so
+%{qt6dir}/plugins/imageformats/kimg_avif.so
+%{qt6dir}/plugins/imageformats/kimg_dds.so
+%{qt6dir}/plugins/imageformats/kimg_eps.so
+%{qt6dir}/plugins/imageformats/kimg_exr.so
+%{qt6dir}/plugins/imageformats/kimg_hdr.so
 %if %{with heif}
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_heif.so
+%{qt6dir}/plugins/imageformats/kimg_heif.so
 %endif
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_iff.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_jp2.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_jxl.so
+%{qt6dir}/plugins/imageformats/kimg_iff.so
+%{qt6dir}/plugins/imageformats/kimg_jp2.so
+%{qt6dir}/plugins/imageformats/kimg_jxl.so
 %if %{with jxr}
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_jxr.so
+%{qt6dir}/plugins/imageformats/kimg_jxr.so
 %endif
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_kra.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_ora.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pcx.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pfm.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pic.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_psd.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_pxr.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_qoi.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_ras.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_raw.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_rgb.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_sct.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_tga.so
-%attr(755,root,root) %{qt6dir}/plugins/imageformats/kimg_xcf.so
+%{qt6dir}/plugins/imageformats/kimg_kra.so
+%{qt6dir}/plugins/imageformats/kimg_ora.so
+%{qt6dir}/plugins/imageformats/kimg_pcx.so
+%{qt6dir}/plugins/imageformats/kimg_pfm.so
+%{qt6dir}/plugins/imageformats/kimg_pic.so
+%{qt6dir}/plugins/imageformats/kimg_psd.so
+%{qt6dir}/plugins/imageformats/kimg_pxr.so
+%{qt6dir}/plugins/imageformats/kimg_qoi.so
+%{qt6dir}/plugins/imageformats/kimg_ras.so
+%{qt6dir}/plugins/imageformats/kimg_raw.so
+%{qt6dir}/plugins/imageformats/kimg_rgb.so
+%{qt6dir}/plugins/imageformats/kimg_sct.so
+%{qt6dir}/plugins/imageformats/kimg_tga.so
+%{qt6dir}/plugins/imageformats/kimg_xcf.so
 
 %files devel
 %defattr(644,root,root,755)
