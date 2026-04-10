@@ -4,7 +4,7 @@
 %bcond_without	heif		# HEIF image plugin
 %bcond_without	jxr		# JXR image plugin
 
-%define		kdeframever	6.24
+%define		kdeframever	6.25
 %define		kf_ver		6.11.0
 %define		qt_ver		6.6.0
 %define		kfname		kimageformats
@@ -12,12 +12,12 @@
 Summary:	Image format plugins for Qt
 Summary(pl.UTF-8):	Wtyczki formatów obrazów dla Qt
 Name:		kf6-%{kfname}
-Version:	6.24.0
-Release:	2
+Version:	6.25.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	d877e3edbe12f96219162a541de93b6e
+# Source0-md5:	aa2e598432fab39eb3698af213572ff9
 URL:		https://kde.org/
 BuildRequires:	Imath-devel
 BuildRequires:	OpenEXR-devel >= 3.0
@@ -169,6 +169,7 @@ rm -rf $RPM_BUILD_ROOT
 %{qt6dir}/plugins/imageformats/kimg_rgb.so
 %{qt6dir}/plugins/imageformats/kimg_sct.so
 %{qt6dir}/plugins/imageformats/kimg_tga.so
+%{qt6dir}/plugins/imageformats/kimg_tim.so
 %{qt6dir}/plugins/imageformats/kimg_xcf.so
 
 %files devel
